@@ -38,19 +38,19 @@ function isDivisByAny(num, arr) {
   // return arr.reduce((a, c) => (a || num%c === 0), false);
 }
 
-function * primeStreamAdvanced(numBruteForce = 5, starting = 2) {
+function * primeStreamAdvanced(numBruteForce = 5) {
   const bf = bruteForcePrimes();
 
   // edge case: 2
   // cant pass 2 into generateSkipList, it messes things up
-  if (starting < 3) yield bf.next().value;
+  yield bf.next().value;
   --numBruteForce;
 
   const primes = [];
   while (primes.length < numBruteForce) {
     const next = bf.next().value;
     primes.push(next);
-    if (next >= starting) yield next;
+    yield next;
   }
 
   if (debug) console.log(`Generated ${numBruteForce + 1} primes`, primes);
