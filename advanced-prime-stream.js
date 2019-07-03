@@ -58,8 +58,9 @@ function * primeStreamAdvanced(numBruteForce = 5) {
   const optStart = getCommonMultiple(primes);
   if (debug) console.log(`Need to get to ${optStart} via brute force`);
   let another = bf.next().value;
-  for (; another < optStart; another = bf.next().value) {
+  while (another < optStart) {
     yield another;
+    another = bf.next().value;
   }
   if (debug) console.log(`Caught up to skip list starting point, using optimized method`);
 
